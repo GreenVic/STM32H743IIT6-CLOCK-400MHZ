@@ -148,8 +148,8 @@ void SetSysClockTo400mHz (void)
 	// [10] Start PLL1 and wait for readiness
 	// *********************************************************************
 	
-    RCC->CR |= RCC_CR_PLLON;
-    while((RCC->CR & RCC_CR_PLL1RDY) == 0) {};
+    	RCC->CR |= RCC_CR_PLLON;
+   	 while((RCC->CR & RCC_CR_PLL1RDY) == 0) {};
 		
 	// PLL1 is configured and running. Now select the source of the SYSCLK frequency and set up the bus dividers.
 		
@@ -157,9 +157,9 @@ void SetSysClockTo400mHz (void)
 	// [11] Divider by 2 HPRE = 0
 	// *********************************************************************
 		
-    // HPRE[3:0]: D1 domain AHB prescaler
+    	// HPRE[3:0]: D1 domain AHB prescaler
 		
-  // 1000: rcc_hclk3 = sys_d1cpre_ck / 2
+  	// 1000: rcc_hclk3 = sys_d1cpre_ck / 2
 	// 1001: rcc_hclk3 = sys_d1cpre_ck / 4
 	// 1010: rcc_hclk3 = sys_d1cpre_ck / 8
 	// 1011: rcc_hclk3 = sys_d1cpre_ck / 16
@@ -180,7 +180,7 @@ void SetSysClockTo400mHz (void)
 	else                  value = 15;
 		
 	reg  = RCC->D1CFGR;                    // read
-  reg &= ~RCC_D1CFGR_HPRE;               // clear
+  	reg &= ~RCC_D1CFGR_HPRE;               // clear
 	reg |= (value << RCC_D1CFGR_HPRE_Pos); // modify	
 	RCC->D1CFGR = reg;                     // set
 
@@ -188,9 +188,9 @@ void SetSysClockTo400mHz (void)
 	// [12] Without division D1CPRE = 0b1000
 	// *********************************************************************
 
-  // D1CPRE[3:0]: D1 domain Core prescaler
+  	// D1CPRE[3:0]: D1 domain Core prescaler
 	
-  // 0xxx: sys_ck not divided (default after reset)
+  	// 0xxx: sys_ck not divided (default after reset)
 	// 1000: sys_ck divided by 2
 	// 1001: sys_ck divided by 4
 	// 1010: sys_ck divided by 8
@@ -212,7 +212,7 @@ void SetSysClockTo400mHz (void)
 	else                    value = 15;
 	
 	reg = RCC->D1CFGR;                       // read
-  reg &= ~RCC_D1CFGR_D1CPRE;               // clear
+  	reg &= ~RCC_D1CFGR_D1CPRE;               // clear
 	reg |= (value << RCC_D1CFGR_D1CPRE_Pos); // modify
 	RCC->D1CFGR = reg;                       // set
 	
@@ -230,13 +230,13 @@ void SetSysClockTo400mHz (void)
 	reg |= RCC_CFGR_SW_PLL1; // modify
 	RCC->CFGR = reg;         // set
 	
-  while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL1) {};
+  	while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL1) {};
 
 	// *********************************************************************	
 	// [14] Divider by 2 D1PPRE = 2
 	// *********************************************************************
 		
-  // Bits 6:4 D1PPRE[2:0]: D1 domain APB3 prescaler
+  	// Bits 6:4 D1PPRE[2:0]: D1 domain APB3 prescaler
 		
 	// 0xx: rcc_pclk3 = rcc_hclk3 (default after reset)
 	// 100: rcc_pclk3 = rcc_hclk3 / 2
@@ -252,15 +252,15 @@ void SetSysClockTo400mHz (void)
 	else                   value = 7;
 		
 	reg  = RCC->D1CFGR;                      // read
-  reg &= ~RCC_D1CFGR_D1PPRE;               // clear
-  reg |= (value << RCC_D1CFGR_D1PPRE_Pos); // modify
+  	reg &= ~RCC_D1CFGR_D1PPRE;               // clear
+  	reg |= (value << RCC_D1CFGR_D1PPRE_Pos); // modify
 	RCC->D1CFGR = reg;                       // set
 		
 	// *********************************************************************		
 	// [15] Divider by 2 D2PPRE1 = 2
 	// *********************************************************************
 		
-  // Bits 6:4 D2PPRE1[2:0]: D2 domain APB1 prescaler
+  	// Bits 6:4 D2PPRE1[2:0]: D2 domain APB1 prescaler
 		
 	// 0xx: rcc_pclk1 = rcc_hclk1 (default after reset)
 	// 100: rcc_pclk1 = rcc_hclk1 / 2
@@ -276,7 +276,7 @@ void SetSysClockTo400mHz (void)
 	else                    value = 7;
 	
 	reg  = RCC->D2CFGR;                       // read
-  reg &= ~RCC_D2CFGR_D2PPRE1;               // clear
+  	reg &= ~RCC_D2CFGR_D2PPRE1;               // clear
 	reg |= (value << RCC_D2CFGR_D2PPRE1_Pos); // modify
 	RCC->D2CFGR = reg;                        // set
 	
@@ -300,17 +300,17 @@ void SetSysClockTo400mHz (void)
 	else                    value = 7;
 	
 	reg  = RCC->D2CFGR;                       // read
-  reg &= ~RCC_D2CFGR_D2PPRE2;               // clear
-  reg |= (value << RCC_D2CFGR_D2PPRE2_Pos); // modify
+  	reg &= ~RCC_D2CFGR_D2PPRE2;               // clear
+  	reg |= (value << RCC_D2CFGR_D2PPRE2_Pos); // modify
 	RCC->D2CFGR = reg;                        // set
 	
 	// *********************************************************************
 	// [17] Divider by 2 D3PPRE = 2
 	// *********************************************************************
 	
-  // Bits 6:4 D3PPRE[2:0]: D3 domain APB4 prescaler
+  	// Bits 6:4 D3PPRE[2:0]: D3 domain APB4 prescaler
 	
-  // 0xx: rcc_pclk4 = rcc_hclk4 (default after reset)
+  	// 0xx: rcc_pclk4 = rcc_hclk4 (default after reset)
 	// 100: rcc_pclk4 = rcc_hclk4 / 2
 	// 101: rcc_pclk4 = rcc_hclk4 / 4
 	// 110: rcc_pclk4 = rcc_hclk4 / 8
@@ -324,7 +324,7 @@ void SetSysClockTo400mHz (void)
 	else                   value = 7;
 	
 	reg  = RCC->D3CFGR;                      // read
-  reg &= ~RCC_D3CFGR_D3PPRE;               // clear
-  reg |= (value << RCC_D3CFGR_D3PPRE_Pos); // modify
+  	reg &= ~RCC_D3CFGR_D3PPRE;               // clear
+  	reg |= (value << RCC_D3CFGR_D3PPRE_Pos); // modify
 	RCC->D3CFGR = reg;                       // set
 }
