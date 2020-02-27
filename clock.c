@@ -131,10 +131,10 @@ void SetSysClockTo400mHz (void)
 	//Bit 16 DIVP1EN: PLL1 DIVP divider output enable
 	RCC->PLLCFGR |= RCC_PLLCFGR_DIVP1EN;
 	
-    // Enable PLL1Q Clock output
+    	// Enable PLL1Q Clock output
 	RCC->PLLCFGR |= RCC_PLLCFGR_DIVQ1EN;
 	
-    // Enable PLL1R  Clock output
+    	// Enable PLL1R  Clock output
 	RCC->PLLCFGR |= RCC_PLLCFGR_DIVR1EN;
 	
 	// *********************************************************************
@@ -284,9 +284,9 @@ void SetSysClockTo400mHz (void)
 	// [16] Divider by 2 D2PPRE2 = 2
 	// *********************************************************************
 
-  // Bits 10:8 D2PPRE2[2:0]: D2 domain APB2 prescaler
+  	// Bits 10:8 D2PPRE2[2:0]: D2 domain APB2 prescaler
 	
-  // 0xx: rcc_pclk2 = rcc_hclk1 (default after reset)
+ 	 // 0xx: rcc_pclk2 = rcc_hclk1 (default after reset)
 	// 100: rcc_pclk2 = rcc_hclk1 / 2
 	// 101: rcc_pclk2 = rcc_hclk1 / 4
 	// 110: rcc_pclk2 = rcc_hclk1 / 8
